@@ -63,6 +63,8 @@ public class Brick implements GameObject {
       return exists;
    }
 
+   public void setExists(boolean exists) { this.exists = exists; }
+
    public Shape getShape() {
       return rect;
    }

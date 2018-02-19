@@ -3,6 +3,7 @@ package gameobjects;
 import java.awt.*;
 import java.util.ArrayList;
 import utils.*;
+import levels.BrickMap;
 
 // The GameObject responsible for arranging a set of bricks.
 public class BrickSet implements GameObject {
@@ -11,13 +12,16 @@ public class BrickSet implements GameObject {
 
    Brick[][] set = new Brick[10][10];
 
-   public BrickSet(int frameWidth, int frameHeight) {
+   public BrickSet(int frameWidth, int frameHeight, BrickMap brickMap) {
       int brickWidth = frameWidth / 10;
       int brickHeight = (frameHeight / 2) / 10;
 
       for(int row = 0; row < 10; row++) {
          for(int col = 0; col < 10; col++) {
             set[row][col] = new Brick(col * brickWidth, row * brickHeight, brickWidth, brickHeight);
+            if(brickMap.getValueAt(row, col).equals("Empty")) {
+               set[row][col].setExists(false);
+            }
          }
       }
    }

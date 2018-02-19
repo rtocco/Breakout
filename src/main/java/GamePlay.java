@@ -2,7 +2,9 @@
 import gameobjects.Ball;
 import gameobjects.BrickSet;
 import gameobjects.Bumper;
+import sun.util.logging.PlatformLogger;
 import utils.GameObjectContainer;
+import levels.Level;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -20,10 +22,13 @@ public class GamePlay extends JPanel implements ActionListener {
       setFocusable(true); // This component can be focused.
       setBackground(Color.BLUE);
 
+      // For now, we just set the level number to 1.
+      Level level = new Level(1);
+
       // Create new game objects.
       Bumper bumper = new Bumper(frameWidth, frameHeight);
       Ball ball = new Ball(frameWidth, frameHeight);
-      BrickSet brickSet = new BrickSet(frameWidth, frameHeight);
+      BrickSet brickSet = new BrickSet(frameWidth, frameHeight, level.getBrickMap());
 
       // Add new game objects.
       gameObjectContainer.setBumper(bumper);
