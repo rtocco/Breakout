@@ -1,6 +1,7 @@
 package gameobjects;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.geom.*;
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class Ball implements GameObject {
    private int FRAME_WIDTH;
    private int FRAME_HEIGHT;
    private Velocity velocity;
+   private Velocity previousVelocity; // Used for pausing.
    private int x;
    private int y;
    private int speed = 4;
@@ -138,5 +140,23 @@ public class Ball implements GameObject {
 
    public boolean getHitBottom() {
       return hitBottom;
+   }
+
+   public void keyPressed(KeyEvent e) {
+      if(e.getKeyCode() == KeyEvent.VK_P) {
+         pause();
+      }
+   }
+
+   public void keyReleased(KeyEvent e) {}
+
+   public void pause() {
+      previousVelocity = velocity;
+      velocity = new Velocity(0, 0, true, true);
+   }
+
+   public void unpause() {
+      velocity = previousVelocity;
+      previousVelocity = null;
    }
 }

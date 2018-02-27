@@ -1,8 +1,6 @@
 package utils;
 
-import gameobjects.Ball;
-import gameobjects.BrickSet;
-import gameobjects.Bumper;
+import gameobjects.*;
 
 // Singleton class that stores all of the game objects.
 public class GameObjectContainer {
@@ -10,6 +8,8 @@ public class GameObjectContainer {
    // Singleton Instance.
    private static GameObjectContainer instance = null;
 
+   private MainMenu mainMenu = null;
+   private PauseMenu pauseMenu = null;
    private Bumper bumper = null;
    private Ball ball = null;
    private BrickSet brickSet = null;
@@ -22,6 +22,14 @@ public class GameObjectContainer {
       }
       return instance;
    }
+
+   public void setMainMenu(MainMenu mainMenu) { this.mainMenu = mainMenu; }
+
+   public MainMenu getMainMenu() { return mainMenu; }
+
+   public void setPauseMenu(PauseMenu pauseMenu) { this.pauseMenu = pauseMenu; }
+
+   public PauseMenu getPauseMenu() { return pauseMenu; }
 
    public void setBumper(Bumper bumper) {
       this.bumper = bumper;
