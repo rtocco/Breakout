@@ -9,14 +9,20 @@ public class Breakout extends JFrame {
    public static final int FRAME_HEIGHT = 650;
 
    public Breakout() {
-      add(new GamePlay(FRAME_WIDTH, FRAME_HEIGHT)); // Add our custom JPanel.
+      // Add our custom JPanel. Note that we pass in the window dimensions so
+      // the game objects will know the game boundaries.
+      add(new GamePlay(FRAME_WIDTH, FRAME_HEIGHT));
 
-      setSize(FRAME_WIDTH, FRAME_HEIGHT); // Set window dimensions.
+      // Set the window dimensions.
+      setSize(FRAME_WIDTH, FRAME_HEIGHT);
       setResizable(false);
 
-      setTitle("src.main.java.Breakout");
-      setLocationRelativeTo(null); // Set window to be located in the center of the screen.
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Exit the application using the System exit method.
+      // Set a title that will appear in the top bar.
+      setTitle("Breakout");
+      // Set window to be located in the center of the screen.
+      setLocationRelativeTo(null);
+      // Exit the application using the System exit method.
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
    public static void main(String[] args) {

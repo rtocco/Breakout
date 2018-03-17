@@ -18,8 +18,12 @@ public class BrickSet implements GameObject {
 
       for(int row = 0; row < 10; row++) {
          for(int col = 0; col < 10; col++) {
-            set[row][col] = new Brick(col * brickWidth, row * brickHeight, brickWidth, brickHeight);
-            if(brickMap.getValueAt(row, col).equals("Empty")) {
+            if(brickMap.getValueAt(row, col).equals("Normal")) {
+               set[row][col] = new Brick(col * brickWidth, row * brickHeight, brickWidth, brickHeight);
+            } else if(brickMap.getValueAt(row, col).equals("Stone")) {
+               set[row][col] = new StoneBrick(col * brickWidth, row * brickHeight, brickWidth, brickHeight);
+            } else if(brickMap.getValueAt(row, col).equals("Empty")) {
+               set[row][col] = new Brick(col * brickWidth, row * brickHeight, brickWidth, brickHeight);
                set[row][col].setExists(false);
             }
          }
@@ -70,7 +74,7 @@ public class BrickSet implements GameObject {
       for(int row = 0; row < 10; row++) {
          for(int col = 0; col < 10; col++) {
             Brick brick = set[row][col];
-            if(brick.getExists() == true) {
+            if(brick.getExists() == true && !(brick instanceof StoneBrick)) {
                return false;
             }
          }

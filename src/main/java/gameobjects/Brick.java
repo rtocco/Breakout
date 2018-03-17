@@ -31,7 +31,7 @@ public class Brick implements GameObject {
          return;
       }
 
-      g2d.setColor(Color.GRAY);
+      g2d.setColor(Color.YELLOW);
       g2d.fill(rect);
 
       g2d.setColor(Color.BLACK);
@@ -49,7 +49,9 @@ public class Brick implements GameObject {
       return width;
    }
 
-   public int getHeight() { return height; }
+   public int getHeight() {
+      return height;
+   }
 
    public int getX() {
       return x;
@@ -63,7 +65,9 @@ public class Brick implements GameObject {
       return exists;
    }
 
-   public void setExists(boolean exists) { this.exists = exists; }
+   public void setExists(boolean exists) {
+      this.exists = exists;
+   }
 
    public Shape getShape() {
       return rect;
