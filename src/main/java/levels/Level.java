@@ -2,6 +2,7 @@ package levels;
 
 import java.io.File;
 
+// Kind of a wrapper class for BrickMap. Contains a BrickMap and a level number.
 public class Level {
     int levelNumber;
     BrickMap brickMap;

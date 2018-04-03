@@ -23,13 +23,21 @@ public class GameObjectContainer {
       return instance;
    }
 
-   public void setMainMenu(MainMenu mainMenu) { this.mainMenu = mainMenu; }
+   public void setMainMenu(MainMenu mainMenu) {
+      this.mainMenu = mainMenu;
+   }
 
-   public MainMenu getMainMenu() { return mainMenu; }
+   public MainMenu getMainMenu() {
+      return mainMenu;
+   }
 
-   public void setPauseMenu(PauseMenu pauseMenu) { this.pauseMenu = pauseMenu; }
+   public void setPauseMenu(PauseMenu pauseMenu) {
+      this.pauseMenu = pauseMenu;
+   }
 
-   public PauseMenu getPauseMenu() { return pauseMenu; }
+   public PauseMenu getPauseMenu() {
+      return pauseMenu;
+   }
 
    public void setBumper(Bumper bumper) {
       this.bumper = bumper;

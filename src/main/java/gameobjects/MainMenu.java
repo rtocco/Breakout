@@ -3,12 +3,19 @@ package gameobjects;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+// The menu presented to the user when they first start the game.
 public class MainMenu implements GameObject {
 
+    // The menu options.
     private String[] selections = {"Level 1", "Level 2", "Level 3"};
+
+    // The option the user is currently focused on.
     private int selection = 0;
+
     private int FRAME_WIDTH;
     private int FRAME_HEIGHT;
+
+    // The option the user has selected, if they have selected one.
     private String selectedLevel = "";
 
     public MainMenu(int frameWidth, int frameHeight) {
@@ -18,6 +25,7 @@ public class MainMenu implements GameObject {
 
     public void move() {}
 
+    // Paint the menu.
     public void render(Graphics2D g2d) {
         g2d.setFont(new Font("TimesRoman", Font.PLAIN, 30));
 
@@ -33,9 +41,11 @@ public class MainMenu implements GameObject {
 
     public void checkStatus() {}
 
+    // Check if the key pressed is up, down, or enter.
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
+        // Move focus one selection down.
         if(key == KeyEvent.VK_DOWN) {
             if(selection >= selections.length - 1) {
                 return;
@@ -43,6 +53,7 @@ public class MainMenu implements GameObject {
             selection++;
         }
 
+        // Move focus one selection up.
         if(key == KeyEvent.VK_UP) {
             if(selection == 0) {
                 return;
@@ -50,6 +61,7 @@ public class MainMenu implements GameObject {
             selection--;
         }
 
+        // Select the option currently focused on.
         if(key == KeyEvent.VK_ENTER) {
             selectedLevel = selections[selection];
         }

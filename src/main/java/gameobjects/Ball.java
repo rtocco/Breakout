@@ -9,39 +9,60 @@ import utils.*;
 
 public class Ball implements GameObject {
 
+   // The window dimensions.
    private int FRAME_WIDTH;
    private int FRAME_HEIGHT;
+
    private Velocity velocity;
    private Velocity previousVelocity; // Used for pausing.
+
+   // The ball's coordinates in the window.
    private int x;
    private int y;
+
+   // The velocity is set using this.
    private int speed = 4;
+
    private boolean hitBottom = false;
+
    private static final int WIDTH = 25;
    private static final int HEIGHT = 25;
-   private Shape circle;
+
+   private Shape circle; // The shape of the ball that will be drawn to the screen.
+
+   // A singleton holding the game objects.
    GameObjectContainer gameObjectContainer = GameObjectContainer.getInstance();
 
    public Ball(int frameWidth, int frameHeight) {
       this.FRAME_WIDTH = frameWidth;
       this.FRAME_HEIGHT = frameHeight;
+
+      // Set the starting position of the ball.
       x = 250;
       y = 350;
+
+      // Set an initial velocity for the ball based on
+      // the variable speed and moving right and down.
       velocity = new Velocity(speed, 1, true, true);
+
+      // Create the shape of the ball, based on the current position.
       circle = new Ellipse2D.Double(x, y, WIDTH, HEIGHT);
    }
 
+   // Modify the ball's coordinates and re-create it's shape.
    public void move() {
       x += velocity.getDx();
       y += velocity.getDy();
       circle = new Ellipse2D.Double(x, y, WIDTH, HEIGHT);
    }
 
+   // Paint the ball.
    public void render(Graphics2D g2d) {
       g2d.setColor(Color.RED);
       g2d.fill(circle);
    }
 
+   // Check if the ball has hit the bumper object.
    private void checkIfHitBumper() {
       Bumper bumper = gameObjectContainer.getBumper();
 
@@ -67,6 +88,7 @@ public class Ball implements GameObject {
       }
    }
 
+   // Check if the ball has hit any of the window walls and set its velocity accordingly.
    private void checkIfHitWalls() {
       if(x >= 1000 - WIDTH) { // Right Side.
          velocity.setNegativeDx();
@@ -83,6 +105,7 @@ public class Ball implements GameObject {
       }
    }
 
+   // Check if the ball has hit any bricks and modify its velocity accordingly.
    private void checkIfHitBricks() {
       BrickSet brickSet = gameObjectContainer.getBrickSet();
       ArrayList<Brick> bricks = brickSet.bricksCloseToBall();
@@ -111,6 +134,7 @@ public class Ball implements GameObject {
       }
    }
 
+   // Check if the ball has hit anything.
    public void checkStatus() {
       // Check if the ball hit the bumper.
       checkIfHitBumper();

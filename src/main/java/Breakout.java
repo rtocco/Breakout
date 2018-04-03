@@ -2,6 +2,7 @@
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
+// Entry point of program.
 public class Breakout extends JFrame {
 
    // Window dimensions.

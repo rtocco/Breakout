@@ -8,10 +8,13 @@ import levels.BrickMap;
 // The GameObject responsible for arranging a set of bricks.
 public class BrickSet implements GameObject {
 
+   // Singleton containing game objects.
    GameObjectContainer gameObjectContainer = GameObjectContainer.getInstance();
 
+   // Matrix of bricks corresponding to the layout specified in the level.
    Brick[][] set = new Brick[10][10];
 
+   // The constructor initializes the set matrix with bricks.
    public BrickSet(int frameWidth, int frameHeight, BrickMap brickMap) {
       int brickWidth = frameWidth / 10;
       int brickHeight = (frameHeight / 2) / 10;
@@ -32,6 +35,7 @@ public class BrickSet implements GameObject {
 
    public void move() {}
 
+   // Paint the bricks.
    public void render(Graphics2D g2d) {
       for(int row = 0; row < 10; row++) {
          for(int col = 0; col < 10; col++) {
@@ -40,6 +44,7 @@ public class BrickSet implements GameObject {
       }
    }
 
+   // Call the checkStatus method of every brick close to the ball.
    public void checkStatus() {
       Ball ball = gameObjectContainer.getBall();
       ArrayList<Brick> bricks = bricksCloseToBall();
@@ -50,6 +55,8 @@ public class BrickSet implements GameObject {
       }
    }
 
+   // Return an ArrayList of bricks that are currently close to the ball.
+   // This should be improved by also accounting for Y coordinates.
    public ArrayList<Brick> bricksCloseToBall() {
       Ball ball = gameObjectContainer.getBall();
       ArrayList<Brick> bricks = new ArrayList<Brick>();
@@ -70,6 +77,7 @@ public class BrickSet implements GameObject {
       return bricks;
    }
 
+   // Check and see if all of the bricks that can be destroyed have been.
    public boolean bricksGone() {
       for(int row = 0; row < 10; row++) {
          for(int col = 0; col < 10; col++) {
